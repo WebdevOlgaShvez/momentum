@@ -23,6 +23,9 @@ body {
 h1 {
   margin-bottom: 3rem;
 }
+input{
+  font-size: 32px;
+}
 
 h2 {
   margin-bottom: 0.5rem;

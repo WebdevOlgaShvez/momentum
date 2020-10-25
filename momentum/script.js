@@ -9,25 +9,33 @@ const showAmPm = true;
 
 // Show Time
 function showTime() {
+  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let monthes = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   let today = new Date(),
     hour = today.getHours(),
     min = today.getMinutes(),
     sec = today.getSeconds();
+    day = days[today.getDay()];
+    date =today.getDate();
+    month = monthes[today.getMonth()];
+    year = today.getFullYear();
+
+  
 
   // Set AM or PM
-  const amPm = hour >= 12 ? 'PM' : 'AM';
+  //const amPm = hour >= 12 ? 'PM' : 'AM';
 
   // 12hr Format
-  hour = hour % 12 || 12;
+  //hour = hour % 12 || 12;
 
   // Output Time
   time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(
     sec
-  )} ${showAmPm ? amPm : ''}`;
+  )}  ${addZero(day)} ${addZero(date)} ${addZero(month)} ${addZero(year)}`;
 
   setTimeout(showTime, 1000);
 }
-
+//${showAmPm ? amPm : ''}
 // Add Zeros
 function addZero(n) {
   return (parseInt(n, 10) < 10 ? '0' : '') + n;
@@ -58,9 +66,15 @@ function setBgGreet() {
 }
 
 // Get Name
+/* function hide( value) {
+  if ( this.value == 'Enter name') 
+  { name.textContent = '';}
+} */
+// onblur="if (this.value == '') {this.value = 'Enter name';}"
 function getName() {
   if (localStorage.getItem('name') === null) {
-    name.textContent = '[Enter Name]';
+    name.textContent = 'Enter Name';
+    
   } else {
     name.textContent = localStorage.getItem('name');
   }
@@ -82,7 +96,7 @@ function setName(e) {
 // Get Focus
 function getFocus() {
   if (localStorage.getItem('focus') === null) {
-    focus.textContent = '[Enter Focus]';
+    focus.textContent = 'Enter Focus';
   } else {
     focus.textContent = localStorage.getItem('focus');
   }
@@ -111,3 +125,4 @@ showTime();
 setBgGreet();
 getName();
 getFocus();
+localStorage.clear();
